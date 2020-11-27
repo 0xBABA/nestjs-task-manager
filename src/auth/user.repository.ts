@@ -9,7 +9,7 @@ export class UserRepository extends Repository<User> {
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
     const { username, password } = authCredentialsDto
     
-    const user = new User();
+    const user = this.create(); // this is the repo and create will create a new entity, in this case a user entity. we need this for testing rather than calling new User()
     
     user.username = username;
     user.salt = await bcrypt.genSalt();;
